@@ -15,7 +15,7 @@ class User(UserMixin, db.Model):
         self.password_hash = generate_password_hash(password)
 
     def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+        return check_password_hash(u, password)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)    
@@ -33,6 +33,3 @@ class Post(db.Model):
 def load_user(id):
     return User.query.get(int(id))
 
-@login.user_loader
-def load_user(id):
-    return User.query.get(int(id))
