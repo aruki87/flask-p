@@ -3,12 +3,12 @@ from app import app
 from app import db
 from app.forms import LoginForm, RegistrationForm
 from flask_login import current_user, login_user, login_required
-from app.models import User
+from app.models import User, Izlet
 from flask_login import logout_user
 from flask import request
 from werkzeug.urls import url_parse
 from datetime import datetime
-from app.forms import EditProfileForm
+from app.forms import EditProfileForm, StvoriIzletForm
 
 
 @app.before_request
@@ -97,3 +97,16 @@ def edit_profile():
         form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', title='Edit Profile',
                            form=form)
+
+@app.route('/stvori_izlet', methods=['GET', 'POST'])
+def stvori_izlet():
+    #if not current_user.is_authenticated:
+        #return redirect(url_for('login'))
+    form = StvoriIzletForm()
+    if form.validate_on_submit():
+        izlet = Izlet(name=form.name.data, description=form.description.data, location=form.location.data, transport=form.transport.data, begin=form.begin.data, end=form.end.data, cost=form.cost.data )
+        db.session.add(izlet)
+        db.session.commit()
+        flash('Cestitamo, stvorili ste izlet')
+        return redirect(url_for('index'))
+    return render_template('stvori_izlet.html', title='Stvori izlet', form=form)

@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, DateField, SelectField, DecimalField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
+from wtforms.fields.html5 import DateField
 from app.models import User
 
 class LoginForm(FlaskForm):
@@ -30,4 +31,14 @@ class RegistrationForm(FlaskForm):
 class EditProfileForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     about_me = TextAreaField('About me', validators=[Length(min=0, max=140)])
+    submit = SubmitField('Submit')
+
+class StvoriIzletForm(FlaskForm):
+    name = StringField('Ime izleta', validators=[DataRequired()])
+    description = TextAreaField('Opis Izleta', validators=[Length(min=0, max=140)])
+    location = StringField('Lokacija', validators=[DataRequired()])
+    transport = StringField('Prijevoz', validators=[DataRequired()])
+    begin = DateField('Pocetak', format='%Y-%m-%d', validators=[DataRequired()])
+    end = DateField('Kraj', format='%Y-%m-%d', validators=[DataRequired()])
+    cost = DecimalField('Cijena', places=2, rounding=None, use_locale=False, number_format=None, validators=[DataRequired()])
     submit = SubmitField('Submit')
