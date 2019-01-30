@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, DateField, SelectField, DecimalField, HiddenField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, DateField, SelectField, DecimalField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 from wtforms.fields.html5 import DateField
 from app.models import User
@@ -41,8 +41,4 @@ class StvoriIzletForm(FlaskForm):
     begin = DateField('Pocetak', format='%Y-%m-%d', validators=[DataRequired()])
     end = DateField('Kraj', format='%Y-%m-%d', validators=[DataRequired()])
     cost = DecimalField('Cijena', places=2, rounding=None, use_locale=False, number_format=None, validators=[DataRequired()])
-    submit = SubmitField('Submit')
-
-class JoinIzlet(FlaskForm):
-    izlet_id = HiddenField()
     submit = SubmitField('Submit')

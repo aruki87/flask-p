@@ -1,0 +1,33 @@
+.navbar {
+	border-bottom: 4px solid #5ca34c;
+}
+
+
+.nav-link {
+	font-size: 1.5em;
+	color: #5ca34c;
+}
+
+.nav-link:hover {
+	color: #335a2a;
+	text-decoration: underline;
+}
+
+.login-button {
+	margin: 0.5em 0.5em 0.5em 0.5em;
+	background-color: #5ca34c;
+	color: white;
+}
+
+.login-button:hover {
+	margin: 0.5em;
+	background-color: #97d27a;
+	color: #335a2a;
+}
+
+.ime {
+	font-size: 100px;
+}
+
+
+
