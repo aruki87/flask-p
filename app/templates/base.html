@@ -14,7 +14,7 @@
       <!-- Navbar -->
       <nav class="navbar">
       
-        <a href="#"><img src="{{ url_for('static', filename='logoizrezani.png') }}" class="logo" alt="slika" /></a>
+        <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='logoizrezani.png') }}" class="logo" alt="slika" /></a>
       
     
       <ul class="nav navbar-left">
@@ -24,13 +24,19 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('stvori_izlet') }}">STVORI IZLET</a>
         </li>
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('svi_izleti') }}">SVI IZLETI</a>
+        </li>
+        {% endif %}
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('user', username=current_user.username) }}">PROFIL</a>
         </li>
         
       </ul>
-      
+      {% if current_user.is_authenticated %}
     <h4 class="text-success">Pozdrav, {{ current_user.username }}!</h4>
+    {% endif %}
       <ul class="nav justify-content-end">
         
         <li>

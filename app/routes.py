@@ -11,6 +11,7 @@ from datetime import datetime
 from app.forms import EditProfileForm, StvoriIzletForm
 
 
+
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
@@ -104,9 +105,14 @@ def stvori_izlet():
         #return redirect(url_for('login'))
     form = StvoriIzletForm()
     if form.validate_on_submit():
-        izlet = Izlet(name=form.name.data, description=form.description.data, location=form.location.data, transport=form.transport.data, begin=form.begin.data, end=form.end.data, cost=form.cost.data )
+        izlet = Izlet(name=form.name.data, description=form.description.data, location=form.location.data, transport=form.transport.data, begin=form.begin.data, end=form.end.data,picture=form.picture.data, cost=form.cost.data )
         db.session.add(izlet)
         db.session.commit()
         flash('Cestitamo, stvorili ste izlet')
         return redirect(url_for('index'))
     return render_template('stvori_izlet.html', title='Stvori izlet', form=form)
+
+@app.route('/svi_izleti')
+def svi_izleti():
+    izlet = Izlet.query.all()
+    return render_template('svi_izleti.html', izlet=izlet)

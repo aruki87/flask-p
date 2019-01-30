@@ -48,6 +48,7 @@ class Izlet(db.Model):
     #timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     begin = db.Column(db.Date, index=True)
     end = db.Column(db.Date, index=True)
+    picture = db.Column(db.String(200))
     cost = db.Column(db.Numeric)
     users = db.relationship('User', secondary=user_izleta, backref='izleta', lazy='dynamic')
 
