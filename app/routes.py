@@ -3,12 +3,12 @@ from app import app
 from app import db
 from app.forms import LoginForm, RegistrationForm
 from flask_login import current_user, login_user, login_required
-from app.models import User, Izlet
+from app.models import User, Izlet, user_izleta
 from flask_login import logout_user
 from flask import request
 from werkzeug.urls import url_parse
 from datetime import datetime
-from app.forms import EditProfileForm, StvoriIzletForm
+from app.forms import EditProfileForm, StvoriIzletForm, JoinIzlet
 
 
 @app.before_request
@@ -114,6 +114,10 @@ def stvori_izlet():
 
 @app.route('/svi_izleti')
 def svi_izleti():
+    form = JoinIzlet()
     izleti=Izlet.query.all()
-    
-    return render_template('svi_izleti.html', title='Svi izleti', izleti=izleti)
+    if form.validate_on_submit():
+        izlet_id= form.izlet_id.data
+        izlet= Izlet.query.get(izlet_id)
+        return redirect(url_for('index'))
+    return render_template('svi_izleti.html', title='Svi izleti', izleti=izleti, form=form)

@@ -7,6 +7,8 @@
             
             <td><h1>Izlet: {{ izlet.name }}</h1>
             <p>Opis: {{ izlet.description }}</p>
+            <p>{{ form.izlet_id(value=izlet.id) }}</p>
+            <p>{{ form.submit() }}</p>
             </td>
         </tr>
     </table>
