@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for izlet in izleti %}
+	<table>
+        <tr valign="top">
+            
+            <td><h1>Izlet: {{ izlet.name }}</h1>
+            <p>Opis: {{ izlet.description }}</p>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    {% endfor %}
+{% endblock %}

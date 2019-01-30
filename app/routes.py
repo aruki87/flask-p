@@ -110,3 +110,10 @@ def stvori_izlet():
         flash('Cestitamo, stvorili ste izlet')
         return redirect(url_for('index'))
     return render_template('stvori_izlet.html', title='Stvori izlet', form=form)
+
+
+@app.route('/svi_izleti')
+def svi_izleti():
+    izleti=Izlet.query.all()
+    
+    return render_template('svi_izleti.html', title='Svi izleti', izleti=izleti)
