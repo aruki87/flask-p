@@ -89,6 +89,7 @@ def edit_profile():
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
+        current_user.picture = form.picture.data
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('edit_profile'))
@@ -112,12 +113,15 @@ def stvori_izlet():
     return render_template('stvori_izlet.html', title='Stvori izlet', form=form)
 
 
-@app.route('/svi_izleti')
+@app.route('/svi_izleti', methods=["GET", "POST"])
 def svi_izleti():
     form = JoinIzlet()
     izleti=Izlet.query.all()
     if form.validate_on_submit():
         izlet_id= form.izlet_id.data
         izlet= Izlet.query.get(izlet_id)
-        return redirect(url_for('index'))
+        izlet.users.append(current_user)
+        db.session.add(izlet)
+        db.session.commit()
+    
     return render_template('svi_izleti.html', title='Svi izleti', izleti=izleti, form=form)

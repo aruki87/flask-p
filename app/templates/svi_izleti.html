@@ -4,11 +4,14 @@
     {% for izlet in izleti %}
 	<table>
         <tr valign="top">
-            
+            <form action="" method="POST" novalidate>
             <td><h1>Izlet: {{ izlet.name }}</h1>
             <p>Opis: {{ izlet.description }}</p>
-            <p>{{ form.izlet_id(value=izlet.id) }}</p>
+            
+            <p>{{ form.izlet_id(value= izlet.id ) }}</p>
+            
             <p>{{ form.submit() }}</p>
+        </form>
             </td>
         </tr>
     </table>
