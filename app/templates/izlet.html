@@ -1,23 +1,44 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<table>
-        <tr valign="top">
-        	<td><img src="{{ izlet.picture }}"></td>
-            
-            <td><h1>Izlet: {{ izlet.name }}</h1>
-			<p>{{ izlet.decription }}</p>
-            <p>{{ izlet.location }}</p>
-            <p>{{ izlet.transport }}</p>
-            <p>{{ izlet.cost }}</p>
-            <form action="" method="POST" novalidate>
-            <p>{{ form.izlet_id(value= izlet.id ) }}</p>
-            <p>{{ form.submit() }}</p>
-            </form>
-            
-            </td>
-        </tr>
-    </table>
-    <hr>
+	<div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+        <div class="my-3 py-3">
+          <h2 class="display-5 zeleno">Rijeka setnja</h2>
+          <p class="lead">Lokacija: Rijeka</p>
+        </div>
+        <div class="bg-white box-shadow mx-auto mt-2" style="width: 80%; height: auto; border-radius: 21px 21px 0 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                         <img src="https://rijeka-nautic.com/img/blog/1b.jpg" id="slika-izlet">
+                    </div>
+                    <div class="col">
+                         <h4 class="text-center zeleno">Opis izleta</h4>
+                         <p class="text-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>
+                         <h4 class="text-center zeleno">Transport</h4>
+                         <p class="text-center">Pjeske</p>
+                     </div>
+                </div>
+                
+             </div>
+      </div>
+      <div class="bg-white box-shadow mx-auto mt-3" style="width: 80%; height: auto; border-radius: 21px 21px 0 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                         <h4 class="text-center zeleno">Pocetak</h4>
+                         <p class="text-center">19.08.2018</p>
+                         <h4 class="text-center zeleno">Kraj</h4>
+                         <p class="text-center">20.08.2018</p>
+                    </div>
+                    <div class="col">
+                         <h4 class="text-center zeleno">Cijena</h4>
+                         <p class="text-center">50kn</p>
+                         
+                     </div>
+                </div>
+                
+             </div>
+      </div>
     
 {% endblock %}
