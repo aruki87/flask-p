@@ -1,0 +1,21 @@
+{% block content %}
+	<table>
+        <tr valign="top">
+        	<td><img src="{{ izlet.picture }}"></td>
+            
+            <td><h1>Izlet: {{ izlet.name }}</h1>
+			<p>{{ izlet.decription }}</p>
+            <p>{{ izlet.location }}</p>
+            <p>{{ izlet.transport }}</p>
+            <p>{{ izlet.cost }}</p>
+            <form action="" method="POST" novalidate>
+            <p>{{ form.izlet_id(value= izlet.id ) }}</p>
+            <p>{{ form.submit() }}</p>
+            </form>
+            
+            </td>
+        </tr>
+    </table>
+    <hr>
+    
+{% endblock %}

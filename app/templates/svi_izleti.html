@@ -8,7 +8,7 @@
     <div class="container svi">
   <div class="row">
     <div class="col">
-      <h4>{{ izleti.name }}</h4>
+      <a class="nav-link" href="{{ url_for('izlet', name=izleti.name) }}"><h4>{{ izleti.name }}</h4></a>
         <img src="{{ izleti.picture }}" id="slika">
     </div>
     <div class="col-6">
