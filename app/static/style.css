@@ -67,6 +67,12 @@
 
 }
 
+#slika-izletsolo {
+	max-width: auto;
+	max-height: 250px;
+
+}
+
 .red{
 	width: 100%;
     padding-right: 15px;
