@@ -53,7 +53,7 @@
 	height: auto;
 }
 
-.svi {
+.svi-korisnici {
 	margin-top: 10px;
 }
 
@@ -64,5 +64,6 @@
 #slika-izlet {
 	max-width: auto;
 	max-height: 300px;
+
 }
 
