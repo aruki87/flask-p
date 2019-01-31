@@ -29,9 +29,9 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class EditProfileForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    about_me = TextAreaField('About me', validators=[Length(min=0, max=140)])
-    picture = StringField('Add picture', validators=[])
+    username = StringField('Username')
+    about_me = TextAreaField('O meni', validators=[Length(min=0, max=140)])
+    picture = StringField('Dodaj sliku')
     submit = SubmitField('Submit')
 
 class StvoriIzletForm(FlaskForm):
@@ -43,7 +43,10 @@ class StvoriIzletForm(FlaskForm):
     end = DateField('Kraj', format='%Y-%m-%d', validators=[DataRequired()])
     picture = StringField('Ucitaj sliku')
     cost = DecimalField('Cijena', places=2, rounding=None, use_locale=False, number_format=None, validators=[DataRequired()])
+    lat = DecimalField('Lat', places=2, rounding=None, use_locale=False, number_format=None, validators=[DataRequired()])
+    lng = DecimalField('Lng', places=2, rounding=None, use_locale=False, number_format=None, validators=[DataRequired()])
     submit = SubmitField('Stvori izlet')
+
 
 class JoinIzlet(FlaskForm):
     izlet_id = HiddenField()

@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_googlemaps import GoogleMaps
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -11,5 +12,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
+
+GoogleMaps(app)
 
 from app import routes, models
