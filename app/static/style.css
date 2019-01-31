@@ -82,3 +82,8 @@
     padding-top: 15px;
 }
 
+.video-fluid {
+  width: 100%;
+  height: auto;
+}
+
