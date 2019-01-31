@@ -22,6 +22,7 @@ class User(UserMixin, db.Model):
     about_me = db.Column(db.String(140))
     picture = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+    napravljeni_izleti = db.relationship('Izlet', backref='creator', lazy='dynamic')
     izleti = db.relationship('Izlet', secondary=user_izleta, backref='usera', lazy='dynamic')
 
     def set_password(self, password):
@@ -51,6 +52,7 @@ class Izlet(db.Model):
     end = db.Column(db.Date, index=True)
     picture = db.Column(db.String(200))
     cost = db.Column(db.Numeric)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     users = db.relationship('User', secondary=user_izleta, backref='izleta', lazy='dynamic')
 
     def __repr__(self):
