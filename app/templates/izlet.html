@@ -37,7 +37,7 @@
                         <p class="text-center">{{ izlet.cost }} kn</p>
                         <form action="" method="POST" novalidate>
                             <p>{{ form.izlet_id(value= izlet.id ) }}</p>
-                            <p>{{ form.submit() }}</p>
+                            <p>{{ form.submit(type="submit", class="btn btn-primary btn-block bg-success text-white border-0") }}</p>
                         </form>
                      </div>
                 </div>
