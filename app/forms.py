@@ -36,18 +36,18 @@ class EditProfileForm(FlaskForm):
 
 class StvoriIzletForm(FlaskForm):
     name = StringField('Ime izleta', validators=[DataRequired()])
-    description = TextAreaField('Opis Izleta', validators=[Length(min=0, max=140)])
+    description = TextAreaField('Opis Izleta', validators=[Length(min=0, max=400)])
     location = StringField('Lokacija', validators=[DataRequired()])
     transport = StringField('Prijevoz', validators=[DataRequired()])
     begin = DateField('Pocetak', format='%Y-%m-%d', validators=[DataRequired()])
     end = DateField('Kraj', format='%Y-%m-%d', validators=[DataRequired()])
     picture = StringField('Ucitaj sliku')
     cost = DecimalField('Cijena', places=2, rounding=None, use_locale=False, number_format=None, validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Stvori izlet')
 
 class JoinIzlet(FlaskForm):
     izlet_id = HiddenField()
-    submit = SubmitField('Submit')
+    submit = SubmitField('Prijavi se')
 
 class EditIzlet(FlaskForm):
     name = StringField('Ime izleta', validators=[DataRequired()])
@@ -59,4 +59,4 @@ class EditIzlet(FlaskForm):
     picture = StringField('Ucitaj sliku')
     cost = DecimalField('Cijena', places=2, rounding=None, use_locale=False, number_format=None, validators=[DataRequired()])
     izlet_id = HiddenField()
-    submit = SubmitField('Submit')
+    submit = SubmitField('Izmjeni')

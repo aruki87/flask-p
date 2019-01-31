@@ -63,11 +63,24 @@
 
 #slika-izlet {
 	max-width: auto;
-	max-height: 300px;
+	max-height: 100px;
 
 }
 
-#12345 {
-	border-width: 0;
+
+#slika-izletsolo {
+	max-width: auto;
+	max-height: 250px;
+
+}
+
+.red{
+	width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 15px;
+
 }
 
