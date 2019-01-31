@@ -2,18 +2,20 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container pt-3 mt-5">
  
     <div class="row justify-content-md-center">
-        <div class="col-md-6">
+        <div class="col-md-5">
+            
             <div class="card">
             <article class="card-body">
 
-            <h4 class="card-title mb-4 mt-1ss">Edit Profile</h4>
+            <h4 class="card-title mb-4 mt-1">Korisnik: {{ current_user.username }} </h4>
 
             <form action="" method="post">
                 {{ form.hidden_tag() }}
                 
+                <!--
                 <p>
                     {{ form.username.label }}<br>
                     {{ form.username(size=32, class="form-control", placeholder="Username", type="text") }}<br>
@@ -21,6 +23,7 @@
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}
                 </p>
+            -->
                 <p>
                     {{ form.about_me.label }}<br>
                     {{ form.about_me(class="form-control", placeholder="O meni", type="text") }}<br>
@@ -30,7 +33,7 @@
                 </p>
                 <p>    
                     {{ form.picture.label }}<br>
-                    {{ form.picture(size=32) }}<br>
+                    {{ form.picture(class="form-control", placeholder="O meni", type="text") }}<br>
                     {% for error in form.picture.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}
