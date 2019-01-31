@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+ <div class="container">
+
+<div class="row">
+    <aside class="col-sm-5 ml-auto">
+
+<div class="card">
+<article class="card-body">
+<h4 class="card-title mb-4 mt-1ss">Izmjeni Izlet</h4>   
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="form-group"><!-- NAME// -->
+            {{ form.name.label }}<br>
+            {{ form.name(size=32, class="form-control", placeholder="Ime izleta", type="text", value=izlet.name) }}
+            {% for error in form.name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div> 
+        <div class="form-group"><!-- DESCRIPTION// -->
+            {{ form.description.label }}<br>
+            {{ form.description(class="form-control", class="form-control", placeholder="Opis izleta", value=izlet.description) }}
+            {% for error in form.description.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div> 
+        <div class="form-group"><!-- LOCATION// -->
+            {{ form.location.label }}<br>
+            {{ form.location(size=32, class="form-control", placeholder="Lokacija", type="text", value=izlet.location) }}
+            {% for error in form.location.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div> 
+        <div class="form-group"><!-- TRANSPORT// -->
+            {{ form.transport.label }}<br>
+            {{ form.transport(size=32, class="form-control", placeholder="Transport", type="text", value=izlet.transport) }}
+            {% for error in form.transport.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div> 
+        <div class="form-group"><!-- BEGIN// -->
+            {{ form.begin.label }}<br>
+            {{ form.begin(size=32, class="form-control") }}
+            {% for error in form.begin.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+         <div class="form-group"><!-- END// -->
+            {{ form.end.label }}<br>
+            {{ form.end(size=32, class="form-control") }}
+            {% for error in form.end.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div class="form-group"><!-- PICTURE// -->
+            {{ form.picture.label }}<br>
+            {{ form.picture(size=200, class="form-control", placeholder="URL slike", value=izlet.picture) }}
+            {% for error in form.picture.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div class="form-group"><!-- COST// -->
+            {{ form.cost.label }}<br>
+            {{ form.cost(size=32, class="form-control", type="text", value=izlet.cost) }}
+            {% for error in form.cost.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+    
+    
+    <div class="form-group">
+        
+        {{ form.submit(type="submit", class="btn btn-primary btn-block bg-success text-white border-0") }}
+    </div> <!-- form-group// -->
+        
+    </form>
+</article>
+</div> <!-- card.// -->
+
+    </aside> <!-- col.// -->
+    <aside class="col-sm-4">
+{% endblock %}

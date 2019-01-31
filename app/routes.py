@@ -8,7 +8,7 @@ from flask_login import logout_user
 from flask import request
 from werkzeug.urls import url_parse
 from datetime import datetime
-from app.forms import EditProfileForm, StvoriIzletForm
+from app.forms import EditProfileForm, StvoriIzletForm, EditIzlet
 
 
 
@@ -106,7 +106,8 @@ def stvori_izlet():
         #return redirect(url_for('login'))
     form = StvoriIzletForm()
     if form.validate_on_submit():
-        izlet = Izlet(name=form.name.data, description=form.description.data, location=form.location.data, transport=form.transport.data, begin=form.begin.data, end=form.end.data,picture=form.picture.data, cost=form.cost.data )
+        izlet = Izlet(name=form.name.data, description=form.description.data, location=form.location.data, transport=form.transport.data, begin=form.begin.data, end=form.end.data,picture=form.picture.data, cost=form.cost.data, creator=current_user)
+
         db.session.add(izlet)
         db.session.commit()
         flash('Cestitamo, stvorili ste izlet')
@@ -132,3 +133,20 @@ def izlet(name):
 def svi_useri():
     useri = User.query.all()
     return render_template('svi_useri.html', useri=useri)
+
+
+@app.route('/edit_izlet/<id>', methods=['GET', 'POST'])
+def edit_izlet(id):
+    form = EditIzlet()
+    izlet = Izlet.query.filter_by(id=id).first_or_404()
+    if form.validate_on_submit():
+        izlet.name = form.name.data;
+        izlet.description = form.description.data;
+        izlet.location = form.location.data;
+        izlet.transport = form.transport.data;
+        izlet.end = form.end.data;
+        izlet.picture = form.picture.data;
+        izlet.cost = form.cost.data;
+        db.session.commit()
+        return redirect(url_for('svi_izleti'))
+    return render_template('edit_izlet.html', title='Izmjeni izlet', form=form, izlet=izlet)
