@@ -36,7 +36,7 @@ class EditProfileForm(FlaskForm):
 
 class StvoriIzletForm(FlaskForm):
     name = StringField('Ime izleta', validators=[DataRequired()])
-    description = TextAreaField('Opis Izleta', validators=[Length(min=0, max=140)])
+    description = TextAreaField('Opis Izleta', validators=[Length(min=0, max=400)])
     location = StringField('Lokacija', validators=[DataRequired()])
     transport = StringField('Prijevoz', validators=[DataRequired()])
     begin = DateField('Pocetak', format='%Y-%m-%d', validators=[DataRequired()])
