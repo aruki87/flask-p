@@ -128,3 +128,7 @@ def izlet(name):
     
     return render_template('izlet.html', izlet=izlet, form=form )
 
+@app.route('/svi_useri')
+def svi_useri():
+    useri = User.query.all()
+    return render_template('svi_useri.html', useri=useri)
