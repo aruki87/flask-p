@@ -42,7 +42,7 @@ class User(UserMixin, db.Model):
 class Izlet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(140))
-    description = db.Column(db.String(140))
+    description = db.Column(db.String(300))
     location = db.Column(db.String(140))
     transport = db.Column(db.String(70))
     #timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)

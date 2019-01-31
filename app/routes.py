@@ -72,7 +72,7 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
-@app.route('/user/<username>')
+@app.route('/user/<username>', methods=['GET', 'POST'])
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
@@ -81,6 +81,13 @@ def user(username):
         {'author': user, 'body': 'Test post #2'}
     ]
     return render_template('user.html', user=user, posts=posts)
+
+"""@app.route('/izlet/<name>')
+@login_required
+def user(name):
+    izlet = Izlet.query.filter_by(name=name).first_or_404()
+    
+    return render_template('user.html', name=name)"""
 
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
