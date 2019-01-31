@@ -24,17 +24,7 @@ def before_request():
 @login_required
 def index():
     user = {'username': 'Miguel'}
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
-    return render_template('index.html', title='Home', posts=posts)
+    return render_template('index.html', title='Home')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -149,6 +139,8 @@ def edit_izlet(id):
         izlet.end = form.end.data;
         izlet.picture = form.picture.data;
         izlet.cost = form.cost.data;
+        izlet.lat = form.lat.data;
+        izlet.lng = form.lng.data;
         db.session.commit()
         return redirect(url_for('svi_izleti'))
     return render_template('edit_izlet.html', title='Izmjeni izlet', form=form, izlet=izlet)

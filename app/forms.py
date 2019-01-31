@@ -43,6 +43,8 @@ class StvoriIzletForm(FlaskForm):
     end = DateField('Kraj', format='%Y-%m-%d', validators=[DataRequired()])
     picture = StringField('Ucitaj sliku')
     cost = DecimalField('Cijena', places=2, rounding=None, use_locale=False, number_format=None, validators=[DataRequired()])
+    lat = DecimalField('Lat', places=2, rounding=None, use_locale=False, number_format=None, validators=[DataRequired()])
+    lng = DecimalField('Lng', places=2, rounding=None, use_locale=False, number_format=None, validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 class JoinIzlet(FlaskForm):
