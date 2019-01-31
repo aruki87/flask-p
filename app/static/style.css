@@ -53,9 +53,17 @@
 	height: auto;
 }
 
-.svi {
+.svi-korisnici {
 	margin-top: 10px;
 }
 
+.zeleno {
+	color: #5ca34c;
+}
 
+#slika-izlet {
+	max-width: auto;
+	max-height: 300px;
+
+}
 

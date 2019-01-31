@@ -1,23 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<table>
-        <tr valign="top">
-        	<td><img src="{{ izlet.picture }}"></td>
-            
-            <td><h1>Izlet: {{ izlet.name }}</h1>
-			<p>{{ izlet.decription }}</p>
-            <p>{{ izlet.location }}</p>
-            <p>{{ izlet.transport }}</p>
-            <p>{{ izlet.cost }}</p>
-            <form action="" method="POST" novalidate>
-            <p>{{ form.izlet_id(value= izlet.id ) }}</p>
-            <p>{{ form.submit() }}</p>
-            </form>
-            
-            </td>
-        </tr>
-    </table>
-    <hr>
-    
+	
+    <div class="bg-light mr-md-3 pt-2 px-3 pt-2 px-md-5 text-center overflow-hidden">
+        <div class="my-3 py-3">
+          <h2 class="display-5 zeleno">{{ izlet.name }}</h2>
+          <p class="lead">Lokacija: {{ izlet.location }}</p>
+        </div>
+        <div class="bg-white box-shadow mx-auto mt-2" style="width: 80%; height: auto; border-radius: 21px 21px 0 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                         <img src="{{ izlet.picture }}" id="slika-izlet">
+                    </div>
+                    <div class="col">
+                         <h4 class="text-center zeleno">Opis izleta</h4>
+                         <p class="text-center">{{ izlet.decription }}</p>
+                         <h4 class="text-center zeleno">Transport</h4>
+                         <p class="text-center">{{ izlet.transport }}</p>
+                     </div>
+                </div>
+                
+             </div>
+      </div>
+      <div class="bg-white box-shadow mx-auto mt-3" style="width: 80%; height: auto; border-radius: 21px 21px 0 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                         <h4 class="text-center zeleno">Pocetak</h4>
+                         <p class="text-center">{{ izlet.begin }}</p>
+                         <h4 class="text-center zeleno">Kraj</h4>
+                         <p class="text-center">{{ izlet.end }}</p>
+                    </div>
+                    <div class="col">
+                        <h4 class="text-center zeleno">Cijena</h4>
+                        <p class="text-center">{{ izlet.cost }} kn</p>
+                        <form action="" method="POST" novalidate>
+                            <p>{{ form.izlet_id(value= izlet.id ) }}</p>
+                            <p>{{ form.submit(type="submit", class="btn btn-primary btn-block bg-success text-white border-0") }}</p>
+                        </form>
+                     </div>
+                </div>
+                
+             </div>
+      </div>
 {% endblock %}
