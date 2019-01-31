@@ -1,17 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% for izlet in izleti %}
-	<table>
-        <tr valign="top">
-            
-            <td><h1>Izlet: {{ izlet.name }}</h1>
-            <p>Opis: {{ izlet.description }}</p>
-            <p>{{ form.izlet_id(value=izlet.id) }}</p>
-            <p>{{ form.submit() }}</p>
-            </td>
-        </tr>
-    </table>
+    {% for izleti in izlet %}
+    <div class="container svi">
+  <div class="row">
+    <div class="col">
+      <h4>{{ izleti.name }}</h4>
+        <img src="{{ izleti.picture }}" id="slika">
+    </div>
+    <div class="col-6">
+        <h6>Opis izleta</h6>
+
+        <p>{{ izleti.description }}</p>    
+
+        <h6>Lokacija</h6>
+        <p>{{ izleti.location }}</p>
+
+        <h6>Transport</h6>
+        <p>{{ izleti.transport }}</p>
+    </div>
+    <div class="col">
+      <h6>Pocetak</h6>
+        <p>{{ izleti.begin }}</p>
+
+        <h6>Kraj</h6>
+        <p>{{ izleti.end }}</p>
+
+        <h6>Cijena</h6>
+        <p>{{ izleti.cost }} kn</p>
+    </div>
+</div>
     <hr>
     {% endfor %}
 {% endblock %}
