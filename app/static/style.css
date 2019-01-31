@@ -1,0 +1,61 @@
+.navbar {
+	border-bottom: 4px solid #5ca34c;
+}
+
+
+.nav-link {
+	font-size: 1.5em;
+	color: #5ca34c;
+}
+
+.nav-link:hover {
+	color: #335a2a;
+	text-decoration: underline;
+}
+
+.login-button {
+	margin: 0.5em;
+	background-color: #5ca34c;
+	color: white;
+}
+
+.login-button:hover {
+	margin: 0.5em;
+	background-color: #97d27a;
+	color: #335a2a;
+}
+
+.sta {
+	padding-top: 20px;
+}
+
+.logo {
+	width: 200px;
+}
+
+/*.container {
+	background-image: url("https://www.bellavistahotel.com/fileadmin/images/active/passeggiate.jpg");
+	max-width: 2000px;
+	background-size: 100%;
+	height: 100vh;
+}*/
+
+.card {
+	opacity: 0.85;
+}
+
+.carousel {
+	height: 100vh;
+}
+
+#slika{
+	width: 40vh;
+	height: auto;
+}
+
+.svi {
+	margin-top: 10px;
+}
+
+
+
