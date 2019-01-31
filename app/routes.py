@@ -118,12 +118,12 @@ def svi_izleti():
 def izlet(name):
     form = JoinIzlet()
     izlet = Izlet.query.filter_by(name=name).first_or_404()
-    
     return render_template('izlet.html', izlet=izlet, form=form )
 
 @app.route('/svi_useri')
 def svi_useri():
     useri = User.query.all()
+
     return render_template('svi_useri.html', useri=useri)
 
 

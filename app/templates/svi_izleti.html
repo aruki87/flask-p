@@ -33,7 +33,10 @@
         <p>{{ izleti.cost }} kn</p>
 
         
-
+        <!--
+        <div>
+            {{googlemap("my_awesome_map", lat=izleti.lat, lng=izleti.lng)}}
+        </div>-->
         {% if izleti.user_id == current_user.id %}
             <p><a href="{{ url_for('edit_izlet', id=izleti.id) }}">Edit your Izlet</a></p>
         {% endif %}
