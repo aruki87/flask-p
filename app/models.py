@@ -52,7 +52,7 @@ class Izlet(db.Model):
     begin = db.Column(db.Date, index=True)
     end = db.Column(db.Date, index=True)
     picture = db.Column(db.String(200))
-    cost = db.Column(db.Numeric)
+    cost = db.Column(db.Numeric(precision=8, asdecimal=False, decimal_return_scale=None))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     users = db.relationship('User', secondary=user_izleta, backref='izleta', lazy='dynamic')
 

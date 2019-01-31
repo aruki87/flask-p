@@ -1,21 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<table>
-        <tr valign="top">
-        	{% if user.picture %}<td><img src="{{ user.picture }}"></td>
-            {% else %}<td><img src="{{ user.avatar(128) }}"></td>{% endif %}
-            <td><h1>User: {{ user.username }}</h1>
-			{% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
-            {% if user.last_seen %}<p>Last seen on: {{ user.last_seen }}</p>{% endif %}
-            {% if user == current_user %}
+
+	
+     <div class="svi-korisnici">
+  <div class="row m-4">
+    <div class="col">
+      <!--a class="nav-link" href="{{ url_for('user', username=user.usernamename) }}"><h4>{{ user.username }}</h4></a>-->
+        {% if user.picture %}<td><img src="{{ user.picture }}" id="slika-izlet2"></td>
+            {% else %}<td><img src="{{ user.avatar(128) }}" id="slika-izlet"></td>{% endif %}
+    </div>
+    <div class="col-6">
+        <h2 class="zeleno">{{ user.username }}</h2>
+        <h5 class="zeleno">O meni</h5>
+
+        {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}  
+        {% if user.last_seen %}<p>Last seen on: {{ user.last_seen }}</p>{% endif %} 
+        {% if user == current_user %}
+
                 <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
             {% endif %}
-            </td>
-        </tr>
-    </table>
+
+    </div>
+    
+   </div>
     <hr>
+
+</div>
+   
+    
+
     {% for izlet in izleti %}
+
     <div class="container svi">
   <div class="row">
     <div class="col">
@@ -49,5 +65,7 @@
 </div>
 
     <hr>
+
     {% endfor %}
+
 {% endblock %}
