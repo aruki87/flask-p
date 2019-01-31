@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container svi">
 	<table>
         <tr valign="top">
         	{% if user.picture %}<td><img src="{{ user.picture }}"></td>
@@ -16,7 +15,6 @@
         </tr>
     </table>
     <hr>
-</div>
     {% for post in posts %}
     	{% include '_post.html' %}
     {% endfor %}
