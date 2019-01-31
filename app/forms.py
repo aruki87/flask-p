@@ -59,4 +59,4 @@ class EditIzlet(FlaskForm):
     picture = StringField('Ucitaj sliku')
     cost = DecimalField('Cijena', places=2, rounding=None, use_locale=False, number_format=None, validators=[DataRequired()])
     izlet_id = HiddenField()
-    submit = SubmitField('Submit')
+    submit = SubmitField('Izmjeni')
