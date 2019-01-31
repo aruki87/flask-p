@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for
 from app import app
 from app import db
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, JoinIzlet
 from flask_login import current_user, login_user, login_required
 from app.models import User, Izlet
 from flask_login import logout_user
@@ -90,6 +90,7 @@ def edit_profile():
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
+        current_user.picture = form.picture.data
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('edit_profile'))
@@ -112,7 +113,22 @@ def stvori_izlet():
         return redirect(url_for('index'))
     return render_template('stvori_izlet.html', title='Stvori izlet', form=form)
 
+
+
 @app.route('/svi_izleti')
 def svi_izleti():
     izlet = Izlet.query.all()
     return render_template('svi_izleti.html', izlet=izlet)
+    
+@app.route('/izlet/<name>', methods=['GET', 'POST'])
+@login_required
+def izlet(name):
+    form = JoinIzlet()
+    izlet = Izlet.query.filter_by(name=name).first_or_404()
+    
+    return render_template('izlet.html', izlet=izlet, form=form )
+
+@app.route('/svi_useri')
+def svi_useri():
+    useri = User.query.all()
+    return render_template('svi_useri.html', useri=useri)

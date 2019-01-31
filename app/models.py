@@ -20,6 +20,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     about_me = db.Column(db.String(140))
+    picture = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     izleti = db.relationship('Izlet', secondary=user_izleta, backref='usera', lazy='dynamic')
 
