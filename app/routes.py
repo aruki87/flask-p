@@ -23,7 +23,6 @@ def before_request():
 @app.route('/index')
 @login_required
 def index():
-    user = {'username': 'Miguel'}
     return render_template('index.html', title='Home')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -118,9 +117,12 @@ def svi_izleti():
 def izlet(name):
     form = JoinIzlet()
     izlet = Izlet.query.filter_by(name=name).first_or_404()
-    useri = User.query.all()
+    izletuser = IzletUser.query.filter_by(izlet_id=izlet.id)
+    useri = []
+    for x in izletuser:
+        useri.append(User.query.filter_by(id=x.user_id).first()) 
     if form.validate_on_submit():
-        izletUser= IzletUser(user_id=current_user.id, izlet_id= form.izlet_id.data)
+        izletUser= IzletUser(user_id=current_user.id, izlet_id= izlet.id)
         db.session.add(izletUser)
         db.session.commit()
         flash('Cestitamo, pridruzili ste se izletu')
