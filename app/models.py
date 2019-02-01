@@ -39,7 +39,6 @@ class User(UserMixin, db.Model):
 
 
 
-
 class Izlet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(140))
@@ -60,10 +59,20 @@ class Izlet(db.Model):
         return '<Izlet {}>'.format(self.name)
 
 
-
-
-
-
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
+
+class Placanje(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    potvrda = db.Column(db.Boolean)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    izlet_id = db.Column(db.Integer, db.ForeignKey('izlet.id'))
+
+class Event(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(140))
+    description = db.Column(db.String(140))
+    location = db.Column(db.String(140))
+    picture = db.Column(db.String(200))

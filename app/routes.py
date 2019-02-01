@@ -1,9 +1,9 @@
 from flask import render_template, flash, redirect, url_for
 from app import app
 from app import db
-from app.forms import LoginForm, RegistrationForm, JoinIzlet
+from app.forms import LoginForm, RegistrationForm, JoinIzlet, PlacanjeForm, EventForm
 from flask_login import current_user, login_user, login_required
-from app.models import User, Izlet
+from app.models import User, Izlet, Placanje, Event
 from flask_login import logout_user
 from flask import request
 from werkzeug.urls import url_parse
@@ -117,8 +117,14 @@ def svi_izleti():
 @login_required
 def izlet(name):
     form = JoinIzlet()
+    form2 = PlacanjeForm()
     izlet = Izlet.query.filter_by(name=name).first_or_404()
-    return render_template('izlet.html', izlet=izlet, form=form )
+    if form2.validate_on_submit():
+        platio = Placanje(user_id=current_user.id, izlet_id= izlet.id, potvrda=True)
+        flash('Platili ste izlet')
+        db.session.add(platio)
+        db.session.commit()
+    return render_template('izlet.html', izlet=izlet, form=form, form2=form2 )
 
 @app.route('/svi_useri')
 def svi_useri():
@@ -144,3 +150,21 @@ def edit_izlet(id):
         db.session.commit()
         return redirect(url_for('svi_izleti'))
     return render_template('edit_izlet.html', title='Izmjeni izlet', form=form, izlet=izlet)
+
+@app.route('/sva_placanja/<name>')
+def sva_placanja():
+    izleti = Izlet.query.filter_by(potvrda = True)    
+    return render_template('svi_izleti.html', izlet=izlet)
+
+@app.route('/novi_event', methods=['GET', 'POST'])
+def novi_event():
+    form3 = EventForm()
+    if form.validate_on_submit():
+        putovanje = Event(name=form3.name.data, description=form3.description.data, location=form3.location.data, picture=form3.picture.data)
+        #putovanje = Event()
+        #putovanje.name= form3.name.data
+        db.session.add(putovanje)
+        db.session.commit()
+        return redirect(url_for('index'))
+
+    return render_template('novi_event.html', title='Stvori event', form=form3)

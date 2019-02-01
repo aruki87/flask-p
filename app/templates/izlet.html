@@ -39,6 +39,15 @@
                             <p>{{ form.izlet_id(value= izlet.id ) }}</p>
                             <p>{{ form.submit(type="submit", class="btn btn-primary btn-block bg-success text-white border-0") }}</p>
                         </form>
+
+                        <form action="" method="POST" novalidate>
+                            {{ form2.hidden_tag()}}
+                            {{ form2.izlet_id(value = izlet.id)}}
+                            {{ form2.kreditna_kartica.label }}<br>
+                            {{ form2.kreditna_kartica(size=32, class="form-control", placeholder="Kr. kart.") }}
+
+                            <p>{{ form.submit(type="submit", class="btn btn-primary btn-block bg-success text-white border-0", value="Plati") }}</p>
+                        </form>
                      </div>
                 </div>
                 

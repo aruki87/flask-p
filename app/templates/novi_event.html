@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <form action="" method="post" novalidate>
+        {{ form3.hidden_tag() }}
+
+        {{ form3.name.label }}<br>
+        {{ form3.name(size=32, type=text) }}<br>
+        {% for error in form3.name.errors %}
+        {{error}}<br>
+        {% endfor %}
+
+        {{ form3.description.label }}<br>
+        {{ form3.description(cols=32, rows=4, type=text) }}<br>
+        {% for error in form3.description.errors %}
+        {{error}}<br>
+        {% endfor %}
+
+        {{ form3.location.label }}<br>
+        {{ form3.location(size=32, type=text) }}<br>
+        {% for error in form3.location.errors %}
+        {{error}}<br>
+        {% endfor %}
+
+        {{ form3.picture.label }}<br>
+        {{ form3.picture(size=32, type=text) }}<br>
+        {% for error in form3.picture.errors %}
+        {{error}}<br>
+        {% endfor %}
+
+        {{ form3.submit() }}
+    </form>
+
+  
+
+
+{% endblock %}

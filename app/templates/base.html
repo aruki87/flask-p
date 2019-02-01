@@ -40,7 +40,14 @@
           <a class="nav-link" href="{{ url_for('svi_useri') }}">SVI USERI</a>
         </li>
         {% endif %}
-        
+
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('novi_event') }}">STVORI EVENT</a>
+        </li>
+        {% endif %}
+
+              
       </ul>
       {% if current_user.is_authenticated %}
     <h4 class="text-success">Pozdrav, {{ current_user.username }}!</h4>

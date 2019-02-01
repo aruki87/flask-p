@@ -63,3 +63,15 @@ class EditIzlet(FlaskForm):
     cost = DecimalField('Cijena', places=2, rounding=None, use_locale=False, number_format=None, validators=[DataRequired()])
     izlet_id = HiddenField()
     submit = SubmitField('Izmjeni')
+
+class PlacanjeForm(FlaskForm):
+    kreditna_kartica = StringField('Broj kreditne kartice', validators=[DataRequired()])
+    izlet_id = HiddenField()
+    submit = SubmitField('Plati')
+
+class EventForm(FlaskForm):
+    name = StringField('Ime eventa', validators=[DataRequired()])
+    description = TextAreaField('Opis Eventa', validators=[Length(min=0, max=140)])
+    location = StringField('Lokacija', validators=[DataRequired()])
+    picture = StringField('Ucitaj sliku')
+    submit = SubmitField('Stvori event')
