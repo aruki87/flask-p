@@ -2,8 +2,8 @@
 
 {% block content %}
 	
-    <div class="bg-light mr-md-3 pt-2 px-3 pt-2 px-md-5 text-center overflow-hidden">
-        <div class="my-3 py-3">
+    <div class="bg-light mr-md-3 px-3 pt-2 px-md-5 text-center overflow-hidden">
+        <div class="my-3 ">
           <h2 class="display-5 zeleno">{{ izlet.name }}</h2>
           <p class="lead">Lokacija: {{ izlet.location }}</p>
         </div>
@@ -29,10 +29,11 @@
                     <div class="col">
                          <h4 class="text-center zeleno">Pocetak</h4>
                          <p class="text-center">{{ izlet.begin }}</p>
+                    </div>
+                    <div class="col">
                          <h4 class="text-center zeleno">Kraj</h4>
                          <p class="text-center">{{ izlet.end }}</p>
                     </div>
-                    
                 </div>
                 
              </div>
@@ -54,12 +55,10 @@
                 </div>
                 <div class="col">
                         <button onclick="myFunction()" class="mala-velika-slova btn btn-primary btn-block bg-success text-white border-0">Prikazi sve prijavljene korisnike</button>
-                        <p class="velika-slova text-center" id="sakrij">Marina, Ante, Marino, Alen</p>
                         
-                    </div>
-             </div>
-      </div>
+                        <div id="sakrij">
       {% for user in useri %}
+      
         <div class="svi-korisnici">
             <div class="row m-4">
                 <div class="col">
@@ -74,6 +73,13 @@
             </div>
         </div>
 
-    <hr>
+            <hr>
+        
     {% endfor %}
+</div>
+                        
+                    </div>
+             </div>
+      </div>
+      
 {% endblock %}
