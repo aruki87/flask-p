@@ -6,11 +6,10 @@ from app import login
 from hashlib import md5
 
 
-user_izleta = db.Table(
-    'User Izleta',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
-    db.Column('izlet_id', db.Integer, db.ForeignKey('izlet.id'))
-)
+class IzletUser(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    izlet_id = db.Column(db.Integer, db.ForeignKey('izlet.id'))
 
 
 class User(UserMixin, db.Model):
@@ -22,7 +21,6 @@ class User(UserMixin, db.Model):
     picture = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     napravljeni_izleti = db.relationship('Izlet', backref='creator', lazy='dynamic')
-    izleti = db.relationship('Izlet', secondary=user_izleta, backref='usera', lazy='dynamic')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -54,8 +52,7 @@ class Izlet(db.Model):
     picture = db.Column(db.String(200))
     cost = db.Column(db.Numeric(precision=8, asdecimal=False, decimal_return_scale=None))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    users = db.relationship('User', secondary=user_izleta, backref='izleta', lazy='dynamic')
-
+    
     def __repr__(self):
         return '<Izlet {}>'.format(self.name)
 

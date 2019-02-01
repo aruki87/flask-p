@@ -3,7 +3,7 @@ from app import app
 from app import db
 from app.forms import LoginForm, RegistrationForm, JoinIzlet
 from flask_login import current_user, login_user, login_required
-from app.models import User, Izlet
+from app.models import User, Izlet, IzletUser
 from flask_login import logout_user
 from flask import request
 from werkzeug.urls import url_parse
@@ -99,7 +99,6 @@ def stvori_izlet():
     form = StvoriIzletForm()
     if form.validate_on_submit():
         izlet = Izlet(name=form.name.data, description=form.description.data, location=form.location.data, transport=form.transport.data, begin=form.begin.data, end=form.end.data,picture=form.picture.data, cost=form.cost.data, creator=current_user)
-
         db.session.add(izlet)
         db.session.commit()
         flash('Cestitamo, stvorili ste izlet')
@@ -112,13 +111,23 @@ def stvori_izlet():
 def svi_izleti():
     izlet = Izlet.query.all()
     return render_template('svi_izleti.html', izlet=izlet)
-    
+
+
 @app.route('/izlet/<name>', methods=['GET', 'POST'])
 @login_required
 def izlet(name):
     form = JoinIzlet()
     izlet = Izlet.query.filter_by(name=name).first_or_404()
-    return render_template('izlet.html', izlet=izlet, form=form )
+    useri = User.query.all()
+    if form.validate_on_submit():
+        izletUser= IzletUser(user_id=current_user.id, izlet_id= form.izlet_id.data)
+        db.session.add(izletUser)
+        db.session.commit()
+        flash('Cestitamo, pridruzili ste se izletu')
+        return redirect(url_for('svi_izleti'))
+    return render_template('izlet.html', izlet=izlet, form=form, useri=useri )
+
+
 
 @app.route('/svi_useri')
 def svi_useri():
