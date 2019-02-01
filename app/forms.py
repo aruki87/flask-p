@@ -50,7 +50,7 @@ class StvoriIzletForm(FlaskForm):
 
 class JoinIzlet(FlaskForm):
     izlet_id = HiddenField()
-    submit = SubmitField('Prijavi se')
+    submit = SubmitField('Pridruzi se')
 
 class EditIzlet(FlaskForm):
     name = StringField('Ime izleta', validators=[DataRequired()])

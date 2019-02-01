@@ -36,7 +36,9 @@
                         <h4 class="text-center zeleno">Cijena</h4>
                         <p class="text-center">{{ izlet.cost }} kn</p>
                         <form action="" method="POST" novalidate>
+                            {{ form.hidden_tag() }}
                             <p>{{ form.izlet_id(value= izlet.id ) }}</p>
+                            <p>{{ form.izlet_id.data }}</p>
                             <p>{{ form.submit(type="submit", class="btn btn-primary btn-block bg-success text-white border-0") }}</p>
                         </form>
                      </div>
@@ -44,4 +46,21 @@
                 
              </div>
       </div>
+      {% for user in useri %}
+        <div class="svi-korisnici">
+            <div class="row m-4">
+                <div class="col">
+                    <h4 class="zeleno">{{ user.username }}</h4>
+                    <img src="{{ user.picture }}" id="slika-izlet">
+                </div>
+
+            <div class="col-6"> 
+                <h5 class="zeleno">O meni</h5>
+                <p>{{ user.about_me }}</p>   
+                <p>Last seen on: {{ user.last_seen }}</p> 
+            </div>
+        </div>
+
+    <hr>
+    {% endfor %}
 {% endblock %}
