@@ -119,14 +119,20 @@ def izlet(name):
     izlet = Izlet.query.filter_by(name=name).first_or_404()
     izletuser = IzletUser.query.filter_by(izlet_id=izlet.id)
     useri = []
+    isAlready = False
     for x in izletuser:
         useri.append(User.query.filter_by(id=x.user_id).first()) 
     if form.validate_on_submit():
-        izletUser= IzletUser(user_id=current_user.id, izlet_id= izlet.id)
-        db.session.add(izletUser)
-        db.session.commit()
-        flash('Cestitamo, pridruzili ste se izletu')
-        return redirect(url_for('svi_izleti'))
+        isIzletUser = IzletUser.query.filter_by(user_id=current_user.id)
+        for x in isIzletUser:
+            if x.izlet_id is izlet.id:
+                isAlready = True
+        if not isAlready :
+                izletUser= IzletUser(user_id=current_user.id, izlet_id= izlet.id)
+                db.session.add(izletUser)
+                db.session.commit()
+                flash('Cestitamo, pridruzili ste se izletu')
+                return redirect(url_for('svi_izleti'))
     return render_template('izlet.html', izlet=izlet, form=form, useri=useri )
 
 
