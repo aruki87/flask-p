@@ -32,7 +32,7 @@ class EditProfileForm(FlaskForm):
     username = StringField('Username')
     about_me = TextAreaField('O meni', validators=[Length(min=0, max=140)])
     picture = StringField('Dodaj sliku')
-    submit = SubmitField('Submit')
+    submit = SubmitField('Promijeni')
 
 class StvoriIzletForm(FlaskForm):
     name = StringField('Ime izleta', validators=[DataRequired()])
