@@ -27,11 +27,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                         <h4 class="text-center zeleno">Pocetak</h4>
+                         <h4 class="text-center zeleno">Pocetak izleta</h4>
                          <p class="text-center">{{ izlet.begin }}</p>
                     </div>
                     <div class="col">
-                         <h4 class="text-center zeleno">Kraj</h4>
+                         <h4 class="text-center zeleno">Kraj izleta</h4>
                          <p class="text-center">{{ izlet.end }}</p>
                     </div>
                 </div>
@@ -66,17 +66,16 @@
                     <img src="{{ user.picture }}" id="slika-izlet">
                 </div>
 
-            <div class="col-6"> 
-                <h5 class="zeleno">O meni</h5>
-                <p>{{ user.about_me }}</p>   
-                <p>Last seen on: {{ user.last_seen }}</p> 
+                <div class="col-6"> 
+                    <h5 class="zeleno">O meni</h5>
+                    <p>{{ user.about_me }}</p>   
+                    {% if user.last_seen %}<p>Last seen on: {{ user.last_seen.strftime('%B %d %Y - %H:%M:%S') }}</p>{% endif %}
+                </div>
             </div>
-        </div>
-
             <hr>
         
-    {% endfor %}
-</div>
+        {% endfor %}
+    </div>
                         
                     </div>
              </div>
