@@ -23,7 +23,6 @@ def before_request():
 @app.route('/index')
 @login_required
 def index():
-    user = {'username': 'Miguel'}
     return render_template('index.html', title='Home')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -118,6 +117,7 @@ def svi_izleti():
 def izlet(name):
     form = JoinIzlet()
     izlet = Izlet.query.filter_by(name=name).first_or_404()
+
     useri = User.query.all()
     if form.validate_on_submit():
         izletUser= IzletUser(user_id=current_user.id, izlet_id= form.izlet_id.data)
