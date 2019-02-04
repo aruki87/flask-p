@@ -159,7 +159,7 @@ def sva_placanja():
 @app.route('/novi_event', methods=['GET', 'POST'])
 def novi_event():
     form3 = EventForm()
-    if form.validate_on_submit():
+    if form3.validate_on_submit():
         putovanje = Event(name=form3.name.data, description=form3.description.data, location=form3.location.data, picture=form3.picture.data)
         #putovanje = Event()
         #putovanje.name= form3.name.data
@@ -167,4 +167,9 @@ def novi_event():
         db.session.commit()
         return redirect(url_for('index'))
 
-    return render_template('novi_event.html', title='Stvori event', form=form3)
+    return render_template('novi_event.html', title='Stvori event', form3=form3)
+
+@app.route('/svi_eventi')
+def svi_eventi():
+    eventi = Event.query.all()
+    return render_template('svi_eventi.html', eventi=eventi)
